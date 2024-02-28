@@ -1,0 +1,145 @@
+<section class="gradient-background" content="width=device-width, initial-scale=1">
+    <div class="container-fluid">
+        <div class="row justify-content-center context">
+            <div class="col-md-3 d-flex align-items-end mb-1">
+                <img src="assets/images/color-scheme-left.svg" alt="" id="earth-img">
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div *ngIf="showLoginForm; else showSignupForm">
+                            <div class="row sign-up">
+                                <div class="col-md-6 form-content">
+                                    <h2>Sign Up</h2>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" [(ngModel)]="user.fullName"
+                                            id="username" placeholder="Enter your full name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Username</label>
+                                        <input type="email" class="form-control" id="email" [(ngModel)]="user.email"
+                                            placeholder="Enter your username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="phone" class="form-control" id="phone"
+                                            [(ngModel)]="user.phoneNumber" placeholder="Enter your phone">
+                                    </div>
+                                    <button class="card-button" (click)="saveUserSignUp()">Sign Up</button>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <img src="assets/images/sign-up-img.svg" class="img-fluid sign-svg-img"
+                                        alt="Login Image">
+                                </div>
+
+                            </div>
+                        </div>
+                        <ng-template #showSignupForm>
+                            <div class="row sign-in">
+                                <div class="col-md-6 text-center">
+                                    <img src="assets/images/login-svg-img.svg" class="img-fluid login-svg-img"
+                                        alt="Login Image">
+                                </div>
+                                <div class="col-md-6 mt-5 form-content">
+                                    <h2>Sign In</h2>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="email" class="form-control" id="username" [(ngModel)]="login.email"
+                                            placeholder="Enter your username">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="password-input-wrapper">
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Enter your password" [(ngModel)]="login.password"
+                                                [type]="showPassword ? 'text' : 'password'">
+                                            <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                                (click)="togglePasswordVisibility()" *ngIf="showPassword">
+                                            <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                                (click)="togglePasswordVisibility()" *ngIf="!showPassword">
+                                        </div>
+                                    </div>
+                                    <p>Forgot password? <a href="" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Click here</a></p>
+                                    <button class="card-button" (click)="userLogin()">Login</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <p *ngIf="showLoginFormTitle; else showSignupFormTitle">Already have an account? <a href="#"
+                                (click)="toggleForms()">Login here</a></p>
+                        <ng-template #showSignupFormTitle>
+                            <p>Don't have an account? <a href="#" (click)="toggleForms()">Sign up here</a>
+                            </p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-end mb-1">
+                <img src="assets/images/color-scheme-right.svg" alt="" id="hi-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card">
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col text-center">
+                            <img src="assets/images/forgot-password-svg.svg" alt="" id="forgot-password-img">
+                        </div>
+                    </div>
+
+                    <div class="row px-5">
+                        <div class="col-md-12 mb-3">
+                            <label for="oldPassword" class="form-label">Old Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.oldPassword" placeholder="Enter your old password"
+                                    [type]="showOldPassword ? 'text' : 'password'">
+                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleOldPasswordVisibility()" *ngIf="showOldPassword">
+                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleOldPasswordVisibility()" *ngIf="!showOldPassword">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.newPassword" placeholder="Enter your password"
+                                    [type]="showNewPassword ? 'text' : 'password'">
+                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleNewPasswordVisibility()" *ngIf="showNewPassword">
+                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleNewPasswordVisibility()" *ngIf="!showNewPassword">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.confirmPassword" placeholder="Confirm your new password"
+                                    [type]="showConfirmPassword ? 'text' : 'password'">
+                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleConfirmPasswordVisibility()" *ngIf="showConfirmPassword">
+                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                    (click)="toggleConfirmPasswordVisibility()" *ngIf="!showConfirmPassword">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row px-5 mt-2 mb-3">
+                        <div class="col">
+                            <button class="card-button mx-3">Save</button>
+                            <button class="card-button" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
