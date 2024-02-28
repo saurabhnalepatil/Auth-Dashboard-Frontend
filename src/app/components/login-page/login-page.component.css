@@ -54,7 +54,7 @@
     /* background: rgb(118, 31, 217); */
     background: linear-gradient(31deg, rgb(118, 31, 217) 0%, rgb(2, 224, 146) 75%);
     border-radius: 35px;
-    border-color: gray ;
+    border-color: gray;
 }
 
 .card-button {
@@ -177,8 +177,8 @@
     }
 
     .gradient-background {
-        background: rgb(159, 3, 255);
-        background: linear-gradient(31deg, rgba(159, 3, 255, 1) 0%, rgb(33, 255, 118) 80%);
+        background: rgb(119, 31, 217);
+        background: linear-gradient(31deg, rgba(119, 31, 217, 1) 0%, rgba(2, 224, 148, 1) 75%);
     }
 }
 
