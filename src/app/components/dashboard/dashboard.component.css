@@ -1,0 +1,19 @@
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    grid-template-rows: 10vh 1fr;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: rgba(2, 224, 148, 1);
+    grid-row: 1 / span 2;
+}
+
+.navbar {
+    background-color: lightcoral;
+}
+
+.main-content {
+    background-color: rgb(230, 195, 126);
+}

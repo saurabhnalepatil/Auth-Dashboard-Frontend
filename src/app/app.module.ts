@@ -7,12 +7,20 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     DashboardComponent,
+    SidenavComponent,
+    NavbarComponent,
+    HomepageComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

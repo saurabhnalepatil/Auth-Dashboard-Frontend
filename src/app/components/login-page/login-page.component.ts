@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SignIn, SignUp } from 'src/app/models/master-model';
 import { MasterServiceTsService } from 'src/app/services/master-service';
 import * as CryptoJS from 'crypto-js';
+import { EncryptionService } from 'src/app/services/enencryption-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -30,6 +31,7 @@ export class LoginPageComponent {
     private router: Router,
     private toastr: ToastrService,
     private masterService: MasterServiceTsService,
+    private encryptionService: EncryptionService
   ) { }
 
   toggleForms() {
@@ -60,12 +62,14 @@ export class LoginPageComponent {
   }
 
   convertText(conversion: string, userName: string, encPassword: string) {
+    const encryptionKey = 'YourSecretKey'; // Replace with your actual secret key
+    const iv = CryptoJS.enc.Utf8.parse('YourInitializationVector'); // Replace with your actual IV
+
     if (conversion == "encrypt") {
-      this.conversionEncryptOutput = CryptoJS.AES.encrypt(userName.trim(), encPassword.trim()).toString();
+      this.conversionEncryptOutput = CryptoJS.AES.encrypt(userName.trim(), encryptionKey, { iv: iv }).toString();
       return this.conversionEncryptOutput;
-    }
-    else {
-      this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+    } else {
+      this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), encryptionKey, { iv: iv }).toString(CryptoJS.enc.Utf8);
       return this.conversionDecryptOutput;
     }
   }
@@ -119,11 +123,15 @@ export class LoginPageComponent {
       this.toastr.error('Please provide a password!');
       return;
     }
-    const hashedPassword = this.convertText("encrypt", this.login.email, this.login.password)
+    const randomKey = CryptoJS.lib.WordArray.random(16); 
+    const encryptionKey = randomKey.toString(CryptoJS.enc.Hex); 
+    const hashedPassword = this.encryptionService.encryptText(this.login.password, encryptionKey);
+
+    // const hashedPassword = this.convertText("encrypt", this.login.email, this.login.password)
     this.masterService.loginUser(this.login.email, hashedPassword).subscribe(
       () => {
-        this.user = new SignUp();
-        this.toggleForms();
+        this.login = new SignIn();
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         if (error.status === 401) {
