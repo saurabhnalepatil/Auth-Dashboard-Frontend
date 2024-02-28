@@ -1,0 +1,208 @@
+.gradient-background {
+    width: 100%;
+    height: 100vh;
+    background: rgb(119, 31, 217);
+    background: linear-gradient(31deg, rgba(119, 31, 217, 1) 0%, rgba(2, 224, 148, 1) 75%);
+    overflow: hidden;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+    width: 100%;
+}
+
+.context {
+    height: 100vh;
+}
+
+.card p {
+    text-align: center;
+    font-size: clamp(15px, 4vw, 20px);
+    font-weight: 500;
+}
+
+/* sign in card */
+.sign-in {
+    padding: 4.6rem 5rem;
+}
+
+.sign-in img {
+    height: 350px;
+    width: 350px;
+}
+
+/* sign up card */
+.sign-up {
+    padding: 1.5rem 5rem;
+}
+
+.sign-up img {
+    height: 450px;
+    width: 450px;
+    transform: scaleX(-1);
+}
+
+#forgot-password-img {
+    height: 200px;
+    width: 200px;
+}
+
+.modal-content {
+    /* background: rgb(118, 31, 217); */
+    background: linear-gradient(31deg, rgb(118, 31, 217) 0%, rgb(2, 224, 146) 75%);
+    border-radius: 35px;
+    border-color: gray ;
+}
+
+.card-button {
+    color: #000000 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(31deg, rgba(119, 31, 217, 1) -30%, rgba(2, 224, 148, 1) 100%);
+    padding: 7px 15px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.4s ease 0s;
+    font-weight: 500;
+}
+
+.card-button:hover {
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper img {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+}
+
+/* For screens between 320px and 424.98px */
+@media (min-width: 320px) and (max-width: 424.98px) {
+
+    #earth-img,
+    #hi-img {
+        display: none;
+    }
+
+    .sign-up {
+        padding: 0px;
+        flex-direction: column-reverse;
+        padding: .5rem .5rem;
+    }
+
+    .form-content h2 {
+        text-align: center;
+    }
+
+    .sign-up img {
+        height: 250px;
+        width: 250px;
+        transform: scaleX(-1);
+
+    }
+
+    .sign-in {
+        padding: .5rem .5rem;
+    }
+
+    .sign-in img {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 767.98px) {}
+
+@media (min-width: 768px) and (max-width: 1123.98px) {
+    .sign-in {
+        padding: 2rem 5rem;
+    }
+
+    .sign-up {
+        padding: 2rem 5rem;
+    }
+
+    .sign-up img {
+        height: 350px;
+        width: 350px;
+        transform: scaleX(-1);
+    }
+
+    #hi-img {
+        margin-left: -5.625rem;
+    }
+
+    #earth-img {
+        margin-left: -.8rem;
+        height: 58%;
+    }
+}
+
+@media (min-width: 1124px) and (max-width: 1600.98px) {
+    .sign-in {
+        padding: .6rem 5rem;
+    }
+
+    .sign-up {
+        padding: .6rem 5rem;
+    }
+
+    .sign-up img {
+        height: 350px;
+        width: 350px;
+        transform: scaleX(-1);
+    }
+
+    #hi-img {
+        margin-left: -5.625rem;
+    }
+
+    #earth-img {
+        margin-left: -.8rem;
+        height: 58%;
+    }
+
+    .gradient-background {
+        background: rgb(159, 3, 255);
+        background: linear-gradient(31deg, rgba(159, 3, 255, 1) 0%, rgb(33, 255, 118) 80%);
+    }
+}
+
+@media(min-width: 1601px) {
+    .sign-in {
+        padding: 2rem 5rem;
+    }
+
+    .sign-up {
+        padding: 2rem 5rem;
+    }
+
+    .sign-up img {
+        height: 350px;
+        width: 350px;
+        transform: scaleX(-1);
+    }
+
+    #hi-img {
+        margin-left: -5.625rem;
+    }
+
+    #earth-img {
+        margin-left: -.8rem;
+        height: 58%;
+    }
+}
