@@ -1,0 +1,106 @@
+<div style="text-align: center;">
+    <h1>
+        Welcome to AG Grid Demo!
+    </h1>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Alt Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Birthday Date</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Modify Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contact in contact">
+                        <td>{{ contact.contactId }}</td>
+                        <td>{{ contact.firstName }}</td>
+                        <td>{{ contact.lastName }}</td>
+                        <td>{{ contact.phoneNumber }}</td>
+                        <td>{{ contact.altPhoneNumber }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.birthdayDate | date }}</td>
+                        <td>{{ contact.address }}</td>
+                        <td>{{ contact.state }}</td>
+                        <td>{{ contact.country }}</td>
+                        <td>{{ contact.modifyDate | date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="card">
+                <div class="container p-5">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" [(ngModel)]="contact.firstName" placeholder="Enter your first name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" [(ngModel)]="contact.lastName" placeholder="Enter your last name">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" [(ngModel)]="contact.phoneNumber"
+                                placeholder="Enter your phone number">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="alt_phone_number" class="form-label">Alternate Phone Number</label>
+                            <input type="tel" class="form-control" id="alt_phone_number" [(ngModel)]="contact.altPhoneNumber"
+                                placeholder="Enter your alternate phone number">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" [(ngModel)]="contact.email" placeholder="Enter your email">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="birthday_date" class="form-label">Birthday Date</label>
+                            <input type="date" class="form-control" id="birthday_date" [(ngModel)]="contact.birthdayDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" [(ngModel)]="contact.address" placeholder="Enter your address">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" [(ngModel)]="contact.state" placeholder="Enter your state">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" [(ngModel)]="contact.country" id="country" placeholder="Enter your country">
+                        </div>
+                    </div>
+                    <div class="row px-5 mt-2 mb-3">
+                        <div class="col">
+                            <button class="card-button mx-3" (click)="saveContactDetails()">Save</button>
+                            <button class="card-button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

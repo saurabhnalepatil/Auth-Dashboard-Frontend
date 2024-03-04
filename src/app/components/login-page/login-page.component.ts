@@ -1,10 +1,8 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SignIn, SignUp } from 'src/app/models/master-model';
 import { MasterServiceTsService } from 'src/app/services/master-service';
-import * as CryptoJS from 'crypto-js';
-import { EncryptionService } from 'src/app/services/enencryption-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,26 +10,30 @@ import { EncryptionService } from 'src/app/services/enencryption-service.service
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
+  @ViewChild('passwordModal') exampleModal!: ElementRef;
+
   showLoginForm: boolean = true;
   showLoginFormTitle: boolean = true;
   showPassword: boolean = false;
-  showOldPassword:boolean = false;
+  showOldPassword: boolean = false;
   showNewPassword: boolean = false;
-  showConfirmPassword:boolean = false;
+  showConfirmPassword: boolean = false;
   encryptText: string = '';
   encPassword: string = '';
   decPassword: string = '';
   conversionEncryptOutput: string = '';
   conversionDecryptOutput: string = '';
   generatedPasswordLength: number = 8;
+  showForgotPassword = 'none';
+  showFirstTimePassword = 'none';
+
   user: SignUp = new SignUp();
-  login: SignIn = new SignIn()
+  login: SignIn = new SignIn();
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private masterService: MasterServiceTsService,
-    private encryptionService: EncryptionService
   ) { }
 
   toggleForms() {
@@ -51,7 +53,7 @@ export class LoginPageComponent {
   toggleConfirmPasswordVisibility() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
-  
+
   generatePassword(length: number = 8) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
     let password = '';
@@ -60,18 +62,14 @@ export class LoginPageComponent {
     }
     return this.user.generatedPassword = password;
   }
-
-  convertText(conversion: string, userName: string, encPassword: string) {
-    const encryptionKey = 'YourSecretKey'; // Replace with your actual secret key
-    const iv = CryptoJS.enc.Utf8.parse('YourInitializationVector'); // Replace with your actual IV
-
-    if (conversion == "encrypt") {
-      this.conversionEncryptOutput = CryptoJS.AES.encrypt(userName.trim(), encryptionKey, { iv: iv }).toString();
-      return this.conversionEncryptOutput;
-    } else {
-      this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), encryptionKey, { iv: iv }).toString(CryptoJS.enc.Utf8);
-      return this.conversionDecryptOutput;
-    }
+  openModal(isForgotPasswordVisible: boolean = false) {
+    debugger;
+    if (isForgotPasswordVisible) { this.showForgotPassword = 'block'; }
+    else { this.showFirstTimePassword = 'block'; }
+  }
+  onCloseHandled() {
+    this.showForgotPassword = 'none';
+    this.showFirstTimePassword = 'none';
   }
 
   saveUserSignUp() {
@@ -92,14 +90,13 @@ export class LoginPageComponent {
       this.toastr.error('Please enter a correct email address!');
       return;
     }
-    this.user.generatedPassword = this.generatePassword(this.generatedPasswordLength)
-    this.user.password = this.convertText("encrypt", this.user.email, this.user.generatedPassword)
+    this.user.password = this.generatePassword(this.generatedPasswordLength)
     this.masterService.registerUser(this.user).subscribe(
       (result) => {
         if (result) {
           this.user = new SignUp();
           this.toastr.success('Sign up successful!');
-          this.toggleForms()
+          this.openModal(false);
         } else {
           this.toastr.error('Registration failed. Please try again.');
         }
@@ -109,7 +106,7 @@ export class LoginPageComponent {
       }
     );
   }
-  
+
   userLogin() {
     debugger;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -123,12 +120,7 @@ export class LoginPageComponent {
       this.toastr.error('Please provide a password!');
       return;
     }
-    const randomKey = CryptoJS.lib.WordArray.random(16); 
-    const encryptionKey = randomKey.toString(CryptoJS.enc.Hex); 
-    const hashedPassword = this.encryptionService.encryptText(this.login.password, encryptionKey);
-
-    // const hashedPassword = this.convertText("encrypt", this.login.email, this.login.password)
-    this.masterService.loginUser(this.login.email, hashedPassword).subscribe(
+    this.masterService.loginUser(this.login.email, this.login.password).subscribe(
       () => {
         this.login = new SignIn();
         this.router.navigate(['/dashboard']);
@@ -149,8 +141,7 @@ export class LoginPageComponent {
       this.toastr.error('Please provide a password!');
       return;
     }
-    const hashedPassword = this.convertText("encrypt", this.login.email, this.login.password)
-    this.masterService.loginUser(this.login.email, hashedPassword).subscribe(
+    this.masterService.loginUser(this.login.email, this.login.password).subscribe(
       () => {
         this.user = new SignUp();
         this.toggleForms();

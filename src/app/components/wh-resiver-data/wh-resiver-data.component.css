@@ -1,0 +1,33 @@
+.modal-content {
+    /* background: rgb(118, 31, 217); */
+    background: linear-gradient(30deg,  #0048bd, #44a7fd,);
+    border-radius: 35px;
+    border-color: gray;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+    width: 100%;
+}
+
+.card-button {
+    color: #000000 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(30deg,  #0048bd, #44a7fd,);
+    padding: 7px 15px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.4s ease 0s;
+    font-weight: 500;
+}
+
+.card-button:hover {
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+}

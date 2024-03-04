@@ -1,0 +1,11 @@
+aside {
+    color: #fff;
+    width: 100%;
+    padding-left: 20px;
+    height: 10vh;
+    background-image: linear-gradient(30deg,#44a7fd, #0048bd);
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+

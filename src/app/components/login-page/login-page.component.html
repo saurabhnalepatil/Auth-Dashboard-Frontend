@@ -54,15 +54,14 @@
                                             <input type="password" class="form-control" id="password"
                                                 placeholder="Enter your password" [(ngModel)]="login.password"
                                                 [type]="showPassword ? 'text' : 'password'">
-                                            <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                            <img src="assets/images/hide.png" alt="Toggle Password Visibility"
                                                 (click)="togglePasswordVisibility()" *ngIf="showPassword">
-                                            <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                            <img src="assets/images/show.png" alt="Toggle Password Visibility"
                                                 (click)="togglePasswordVisibility()" *ngIf="!showPassword">
                                         </div>
                                     </div>
-                                    <p>Forgot password? <a href="" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Click here</a></p>
-                                    <button class="card-button" (click)="userLogin()">Login</button>
+                                    <p>Forgot password? <a href="#" (click)="openModal()">Click here</a></p>
+                                    <button class="card-button">Login</button>
                                 </div>
                             </div>
                         </ng-template>
@@ -82,9 +81,10 @@
     </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- Forgot password modal -->
+<div class="backdrop" [ngStyle]="{'display':showForgotPassword}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':showForgotPassword}">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="card">
                 <div class="container">
@@ -101,9 +101,9 @@
                                 <input type="password" class="form-control" id="password"
                                     [(ngModel)]="login.oldPassword" placeholder="Enter your old password"
                                     [type]="showOldPassword ? 'text' : 'password'">
-                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
                                     (click)="toggleOldPasswordVisibility()" *ngIf="showOldPassword">
-                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
                                     (click)="toggleOldPasswordVisibility()" *ngIf="!showOldPassword">
                             </div>
                         </div>
@@ -113,9 +113,9 @@
                                 <input type="password" class="form-control" id="password"
                                     [(ngModel)]="login.newPassword" placeholder="Enter your password"
                                     [type]="showNewPassword ? 'text' : 'password'">
-                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
                                     (click)="toggleNewPasswordVisibility()" *ngIf="showNewPassword">
-                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
                                     (click)="toggleNewPasswordVisibility()" *ngIf="!showNewPassword">
                             </div>
                         </div>
@@ -125,9 +125,9 @@
                                 <input type="password" class="form-control" id="password"
                                     [(ngModel)]="login.confirmPassword" placeholder="Confirm your new password"
                                     [type]="showConfirmPassword ? 'text' : 'password'">
-                                <img src="assets/images/eye-hide-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
                                     (click)="toggleConfirmPasswordVisibility()" *ngIf="showConfirmPassword">
-                                <img src="assets/images/eye-show-img.svg" alt="Toggle Password Visibility"
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
                                     (click)="toggleConfirmPasswordVisibility()" *ngIf="!showConfirmPassword">
                             </div>
                         </div>
@@ -135,7 +135,69 @@
                     <div class="row px-5 mt-2 mb-3">
                         <div class="col">
                             <button class="card-button mx-3">Save</button>
-                            <button class="card-button" data-bs-dismiss="modal">Cancel</button>
+                            <button class="card-button" (click)="onCloseHandled()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- First time login password modal -->
+<div class="backdrop" [ngStyle]="{'display':showFirstTimePassword}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':showFirstTimePassword}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col text-center">
+                            <img src="assets/images/first-generate-password.svg" alt="" id="forgot-password-img">
+                        </div>
+                    </div>
+
+                    <div class="row px-5">
+                        <div class="col-md-12 mb-3">
+                            <label for="oldPassword" class="form-label">Passowrd</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.oldPassword" placeholder="Enter your password"
+                                    [type]="showOldPassword ? 'text' : 'password'">
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
+                                    (click)="toggleOldPasswordVisibility()" *ngIf="showOldPassword">
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
+                                    (click)="toggleOldPasswordVisibility()" *ngIf="!showOldPassword">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.newPassword" placeholder="Enter your password"
+                                    [type]="showNewPassword ? 'text' : 'password'">
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
+                                    (click)="toggleNewPasswordVisibility()" *ngIf="showNewPassword">
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
+                                    (click)="toggleNewPasswordVisibility()" *ngIf="!showNewPassword">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" class="form-control" id="password"
+                                    [(ngModel)]="login.confirmPassword" placeholder="Confirm your new password"
+                                    [type]="showConfirmPassword ? 'text' : 'password'">
+                                <img src="assets/images/hide.png" alt="Toggle Password Visibility"
+                                    (click)="toggleConfirmPasswordVisibility()" *ngIf="showConfirmPassword">
+                                <img src="assets/images/show.png" alt="Toggle Password Visibility"
+                                    (click)="toggleConfirmPasswordVisibility()" *ngIf="!showConfirmPassword">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row px-5 mt-2 mb-3">
+                        <div class="col">
+                            <button class="card-button mx-3">Save</button>
+                            <button class="card-button" (click)="onCloseHandled()">Cancel</button>
                         </div>
                     </div>
                 </div>

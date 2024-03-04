@@ -11,6 +11,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { WhResiverDataComponent } from './components/wh-resiver-data/wh-resiver-data.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavbarComponent,
     HomepageComponent,
     SidebarComponent,
+    WhResiverDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

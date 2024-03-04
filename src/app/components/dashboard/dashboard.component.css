@@ -1,19 +1,17 @@
-.dashboard-container {
+.parent {
     display: grid;
-    grid-template-columns: 20% 1fr;
-    grid-template-rows: 10vh 1fr;
-    height: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 4fr repeat(3, 1fr);
 }
 
-.sidebar {
-    background-color: rgba(2, 224, 148, 1);
-    grid-row: 1 / span 2;
+.div1 {
+    grid-area: 1 / 1 / 6 / 2;
 }
 
-.navbar {
-    background-color: lightcoral;
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
 }
 
-.main-content {
-    background-color: rgb(230, 195, 126);
+.div3 {
+    grid-area: 2 / 2 / 6 / 3;
 }
