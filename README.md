@@ -1,27 +1,48 @@
-# WhFrontend
+# Angular Authentication Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+Welcome to the Angular Authentication Application repository! This application provides a comprehensive solution for user authentication, including sign-in, sign-up, authentication guards, and password recovery functionalities.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Sign-in**: Allow users to authenticate themselves with their credentials.
+- **Sign-up**: Enable new users to create accounts securely.
+- **Authentication Guard**: Protect routes that require authentication to access.
+- **Forgot Password**: Provide a mechanism for users to reset their passwords if forgotten.
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular**: Front-end framework for building dynamic and interactive user interfaces.
+- **Firebase**: Backend-as-a-Service platform for user authentication and database storage.
+- **Angular Material**: UI component library for Angular applications, providing pre-built UI components for a consistent design.
+- **RxJS**: Reactive Extensions for JavaScript, used for handling asynchronous operations and data streams.
 
-## Build
+## Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Clone the repository to your local machine.**
+2. **Install dependencies using `npm install`.**
+3. **Set up Firebase Authentication**: 
+   - Create a Firebase project on the [Firebase Console](https://console.firebase.google.com/).
+   - Enable Email/Password authentication method.
+   - Set up Firebase configuration in the Angular environment files (`environment.ts` and `environment.prod.ts`).
+4. **Run the development server using `ng serve`.**
+5. **Access the application in your web browser at `http://localhost:4200`.**
 
-## Running unit tests
+## Project Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **src/app/components**: Contains Angular components for the login, sign-up, and password reset forms.
+- **src/app/services**: Contains Angular services for user authentication, HTTP requests, and Firebase integration.
+- **src/app/guards**: Contains Angular guards for route protection based on user authentication status.
 
-## Running end-to-end tests
+## Contributing
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
-## Further help
+1. **Fork the repository.**
+2. **Create a new branch for your feature or bug fix.**
+3. **Make your changes and commit them with descriptive messages.**
+4. **Push your changes to your fork.**
+5. **Submit a pull request to the main repository.**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
