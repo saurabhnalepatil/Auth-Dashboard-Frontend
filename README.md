@@ -1,6 +1,10 @@
 # Angular Authentication Application
 
 Welcome to the Angular Authentication Application repository! This application provides a comprehensive solution for user authentication, including sign-in, sign-up, authentication guards, and password recovery functionalities.
+# **Demo 🎥**
+![image](https://github.com/saurabhnalepatil/Auth-Dashboard-Frontend/assets/95145125/f5688bf2-0010-4273-ae43-d07cc2518a2b)
+
+# View live preview [here](https://auth-dashboard-frontend.vercel.app).
 
 ## Features
 
